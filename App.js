@@ -39,7 +39,7 @@ const App: () => Node = () => {
     <View style={{flex: 1}}>
       <WebView
         originWhitelist={['*']}
-        source={{uri: 'https://dev.geobuff.com'}}
+        source={{uri: 'https://geobuff.com'}}
         style={{marginTop: 40}}
       />
     </View>
