@@ -1,49 +1,54 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
-import type {Node} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
-  useColorScheme,
+  Platform,
   View,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
 import {WebView} from 'react-native-webview';
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+const App = () => {
+  const SafeStatusBar = ({backgroundColor, ...props}) => (
+    <View style={[styles.statusBar, {backgroundColor}]}>
+      <SafeAreaView>
+        <StatusBar backgroundColor={backgroundColor} />
+      </SafeAreaView>
+    </View>
+  );
 
   return (
-    <View style={{flex: 1}}>
-      <WebView
-        originWhitelist={['*']}
-        source={{uri: 'https://geobuff.com'}}
-        style={{marginTop: 40}}
-      />
+    <View style={styles.container}>
+      <SafeStatusBar backgroundColor="white" />
+      <View style={styles.content}>
+        <WebView
+          originWhitelist={['*']}
+          source={{uri: 'https://geobuff.com'}}
+        />
+      </View>
     </View>
   );
 };
+
+const STATUSBAR_HEIGHT = StatusBar.currentHeight;
+const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  statusBar: {
+    height: STATUSBAR_HEIGHT,
+  },
+  appBar: {
+    backgroundColor: '#79B45D',
+    height: APPBAR_HEIGHT,
+  },
+  content: {
+    flex: 1,
+    backgroundColor: '#33373B',
+  },
+});
 
 export default App;
