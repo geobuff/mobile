@@ -24,7 +24,7 @@ const App = () => {
       <View style={styles.content}>
         <WebView
           originWhitelist={['*']}
-          source={{uri: 'https://dev.geobuff.com'}}
+          source={{uri: 'https://geobuff.com'}}
         />
       </View>
     </View>
