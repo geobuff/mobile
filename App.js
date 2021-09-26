@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -6,10 +6,14 @@ import {
   Platform,
   View,
 } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 
 import {WebView} from 'react-native-webview';
 
 const App = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   const SafeStatusBar = ({backgroundColor, ...props}) => (
     <View style={[styles.statusBar, {backgroundColor}]}>
       <SafeAreaView>
