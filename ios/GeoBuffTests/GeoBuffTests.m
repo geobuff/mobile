@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface mobileTests : XCTestCase
+@interface GeoBuffTests : XCTestCase
 
 @end
 
-@implementation mobileTests
+@implementation GeoBuffTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {
