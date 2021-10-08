@@ -1,6 +1,8 @@
-package com.mobile;
+package com.geobuff.mobile;
 
+import android.os.Bundle;
 import com.facebook.react.ReactActivity;
+import org.devio.rn.splashscreen.SplashScreen; // here
 
 public class MainActivity extends ReactActivity {
 
