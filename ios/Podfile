@@ -14,11 +14,11 @@ target 'GeoBuff' do
 
   pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
 
-  pod 'appcenter-core', :path => '../node_modules/appcenter'
+  pod 'appcenter-core', :path => '../node_modules/appcenter/ios'
 
-  pod 'appcenter-analytics', :path => '../node_modules/appcenter-analytics'
+  pod 'appcenter-analytics', :path => '../node_modules/appcenter-analytics/ios'
 
-  pod 'appcenter-crashes', :path => '../node_modules/appcenter-crashes'
+  pod 'appcenter-crashes', :path => '../node_modules/appcenter-crashes/ios'
 
   target 'GeoBuffTests' do
     inherit! :complete
