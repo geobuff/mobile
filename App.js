@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { WEBVIEW_URL } from '@env';
 import { SafeAreaView, StyleSheet, View, StatusBar } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -19,10 +20,7 @@ const App = () => {
     <View style={styles.flex}>
       <SafeStatusBar />
       <View style={styles.flex}>
-        <WebView
-          originWhitelist={['*']}
-          source={{ uri: 'https://geobuff.com' }}
-        />
+        <WebView originWhitelist={['*']} source={{ uri: WEBVIEW_URL }} />
       </View>
     </View>
   );

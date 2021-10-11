@@ -1,3 +1,10 @@
+const crypto = require('crypto');
+const fs = require('fs');
+
+let hash = crypto.createHash('sha256');
+hash.update(fs.readFileSync('.env'));
+const cacheVersion = hash.digest('hex');
+
 /**
  * Metro configuration for React Native
  * https://github.com/facebook/react-native
@@ -6,6 +13,7 @@
  */
 
 module.exports = {
+  cacheVersion,
   transformer: {
     getTransformOptions: async () => ({
       transform: {
