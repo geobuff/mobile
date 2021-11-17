@@ -1,9 +1,17 @@
 import React, { useEffect } from 'react';
 import { WEBVIEW_URL } from '@env';
-import { SafeAreaView, StyleSheet, View, StatusBar } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  StatusBar,
+  Platform,
+} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 
 import { WebView } from 'react-native-webview';
+
+const isAndroid = Platform.OS === 'android';
 
 const App = () => {
   useEffect(() => {
@@ -29,6 +37,7 @@ const App = () => {
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
+    marginTop: isAndroid ? 12 : undefined,
   },
 });
 
