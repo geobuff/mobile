@@ -20,7 +20,12 @@ const App = () => {
     <View style={styles.flex}>
       <SafeStatusBar />
       <View style={styles.flex}>
-        <WebView originWhitelist={['*']} source={{ uri: WEBVIEW_URL }} />
+        <WebView
+          originWhitelist={['*']}
+          source={{ uri: WEBVIEW_URL }}
+          cacheEnabled={false}
+          cacheMode={'LOAD_NO_CACHE'}
+        />
       </View>
     </View>
   );
