@@ -5,7 +5,6 @@ import {
   StyleSheet,
   View,
   StatusBar,
-  Text,
   Platform,
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
@@ -14,6 +13,7 @@ import DeviceInfo from 'react-native-device-info';
 import { WebView } from 'react-native-webview';
 
 const initialJS = `true;`;
+const isAndroid = Platform.OS === 'android';
 
 const App = () => {
   useEffect(() => {
@@ -66,6 +66,7 @@ const App = () => {
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
+    marginTop: isAndroid ? 12 : undefined,
   },
 });
 
