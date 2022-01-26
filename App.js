@@ -1,14 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { WEBVIEW_URL } from '@env';
-import { SafeAreaView, StyleSheet, View, StatusBar } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  StatusBar,
+  Text,
+  Platform,
+} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+import DeviceInfo from 'react-native-device-info';
 
 import { WebView } from 'react-native-webview';
 
-const run = `
-      document.body.style.backgroundColor = 'blue';
-      true;
-    `;
+const initialJS = `true;`;
 
 const App = () => {
   useEffect(() => {
@@ -22,20 +27,36 @@ const App = () => {
   );
 
   const webViewRef = useRef();
+  const [injectedJavaScript, setInjectedJavaScript] = useState(initialJS);
+
+  useEffect(() => {
+    if (!!DeviceInfo && !!Platform) {
+      const hasNotch = JSON.stringify(DeviceInfo.hasNotch());
+      const operatingSystem = JSON.stringify(Platform.OS);
+
+      setInjectedJavaScript(`
+      localStorage.setItem("geobuff.device.hasNotch", ${hasNotch});
+      localStorage.setItem("geobuff.device.os", ${operatingSystem});
+      document.body.style.backgroundColor = 'blue';
+      true;
+      `);
+    }
+  }, [DeviceInfo, Platform]);
 
   return (
     <View style={styles.flex}>
       <SafeStatusBar />
-      {/* <View>{DeviceInfo.toString()}</View> */}
       <View style={styles.flex}>
         <WebView
           ref={ref => (webViewRef.current = ref)}
           originWhitelist={['*']}
-          injectedJavaScript={run} // now injectedJavaScript will trigger along with the ref.
+          injectedJavaScript={injectedJavaScript}
           source={{ uri: WEBVIEW_URL }}
           onMessage={event => {
             alert(event.nativeEvent.data);
           }}
+          cacheEnabled={false}
+          cacheMode={'LOAD_NO_CACHE'}
         />
       </View>
     </View>
