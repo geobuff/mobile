@@ -33,6 +33,7 @@ const App = () => {
           source={{ uri: WEBVIEW_URL }}
           cacheEnabled={false}
           cacheMode={'LOAD_NO_CACHE'}
+          decelerationRate="normal"
         />
       </View>
     </View>
