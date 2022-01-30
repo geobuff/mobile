@@ -37,7 +37,6 @@ const App = () => {
       setInjectedJavaScript(`
       localStorage.setItem("geobuff.device.hasNotch", ${hasNotch});
       localStorage.setItem("geobuff.device.os", ${operatingSystem});
-      document.body.style.backgroundColor = 'blue';
       true;
       `);
     }
@@ -52,9 +51,6 @@ const App = () => {
           originWhitelist={['*']}
           injectedJavaScript={injectedJavaScript}
           source={{ uri: WEBVIEW_URL }}
-          onMessage={event => {
-            alert(event.nativeEvent.data);
-          }}
           cacheEnabled={false}
           cacheMode={'LOAD_NO_CACHE'}
         />
