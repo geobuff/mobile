@@ -20,6 +20,8 @@ target 'GeoBuff' do
 
   pod 'appcenter-crashes', :path => '../node_modules/appcenter-crashes/ios'
 
+  pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
+
   target 'GeoBuffTests' do
     inherit! :complete
     # Pods for testing
