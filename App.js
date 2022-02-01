@@ -12,7 +12,10 @@ import DeviceInfo from 'react-native-device-info';
 
 import { WebView } from 'react-native-webview';
 
-const initialJS = `true;`;
+const initialJS = `
+true;
+`;
+
 const isAndroid = Platform.OS === 'android';
 
 const App = () => {
@@ -42,6 +45,8 @@ const App = () => {
     }
   }, [DeviceInfo, Platform]);
 
+  console.log(injectedJavaScript, 'injectedJS');
+
   return (
     <View style={styles.flex}>
       <SafeStatusBar />
@@ -49,7 +54,7 @@ const App = () => {
         <WebView
           ref={ref => (webViewRef.current = ref)}
           originWhitelist={['*']}
-          injectedJavaScript={injectedJavaScript}
+          injectedJavaScriptBeforeContentLoaded={injectedJavaScript}
           source={{ uri: WEBVIEW_URL }}
           cacheEnabled={false}
           cacheMode={'LOAD_NO_CACHE'}
