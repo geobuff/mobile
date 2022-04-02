@@ -45,8 +45,6 @@ const App = () => {
     }
   }, [DeviceInfo, Platform]);
 
-  console.log(injectedJavaScript, 'injectedJS');
-
   return (
     <View style={styles.flex}>
       <SafeStatusBar />
@@ -59,6 +57,7 @@ const App = () => {
           cacheEnabled={false}
           cacheMode={'LOAD_NO_CACHE'}
           decelerationRate="normal"
+          onContentProcessDidTerminate={() => webViewRef.reload()}
         />
       </View>
     </View>
