@@ -31,6 +31,7 @@ const App = () => {
 
   const webViewRef = useRef();
   const [injectedJavaScript, setInjectedJavaScript] = useState(initialJS);
+  const [webviewKey, setWebviewKey] = useState(0);
 
   useEffect(() => {
     if (!!DeviceInfo && !!Platform) {
@@ -45,11 +46,14 @@ const App = () => {
     }
   }, [DeviceInfo, Platform]);
 
+  const reload = () => setWebviewKey(webviewKey + 1);
+
   return (
     <View style={styles.flex}>
       <SafeStatusBar />
       <View style={styles.flex}>
         <WebView
+          key={webviewKey}
           ref={ref => (webViewRef.current = ref)}
           originWhitelist={['*']}
           injectedJavaScriptBeforeContentLoaded={injectedJavaScript}
@@ -57,7 +61,7 @@ const App = () => {
           cacheEnabled={false}
           cacheMode={'LOAD_NO_CACHE'}
           decelerationRate="normal"
-          onContentProcessDidTerminate={() => webViewRef.reload()}
+          onContentProcessDidTerminate={() => reload()}
         />
       </View>
     </View>
